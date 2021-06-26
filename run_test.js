@@ -19,7 +19,7 @@ app.listen(port, () => {
 // app.use(express.static('public'))
 // app.use(express.static('node_modules'))
 
-app.get('/get_new_angle', (req, res) => {
+app.get('/get_angles', (req, res) => {
   // console.log("request_received")
   curr.x=curr.x+0.01;
   curr.y=curr.y+0.01;

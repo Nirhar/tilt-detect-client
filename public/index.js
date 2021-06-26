@@ -1,5 +1,8 @@
-const ip='localhost'
-const port='3000'
+// const ip='localhost'
+// const port='3000'
+
+const ip='192.168.1.10'
+const port='80'
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -24,18 +27,23 @@ const animate = async function () {
     requestAnimationFrame(animate);
 
 
-    var request=new Request(`http://${ip}:${port}/get_new_angle`,{
+    var request=new Request(`http://${ip}:${port}/get_angles`,{
         mode:'cors'
     })
 
     var resp = await fetch(request).then(response=>{
-        return response.json();
+        // console.log(response.text())
+        return response.text();
     }).catch(error=>{
         console.error(error);
     })
-    // console.log(resp);
-    cube.rotation.x = resp.x;
-    cube.rotation.y = resp.y;
+    resp = JSON.parse(resp);
+    console.log(resp);
+    cube.rotation.x = resp.roll*(3.1416/180);
+    // // cube.rotation.y = resp.y;
+    cube.rotation.z = resp.pitch*(3.1416/180);
+
+    // cube.rotation.z = 3.14/2;
 
     renderer.render(scene, camera);
 };
