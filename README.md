@@ -7,3 +7,5 @@ The app uses Javascript and Three.js library for Graphics rendering
 Change the IP address and the port as configured in the esp32 in the index.js file to establish a valid connection
 
 Same Source Origin Policy may need to be disabled to run this correctly
+
+Open public/index.html to run the app
